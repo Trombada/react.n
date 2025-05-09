@@ -60,3 +60,4 @@ const LoginScreen = ({ navigation }) => {
             <TextInput placeholder="Email" onChangeText={setEmail} />
             <TextInput placeholder="Senha" secureTextEntry={true} onChangeText={setSenha} />
             <Button title="Entrar" onPress={handleLogin} />
+        <view>
