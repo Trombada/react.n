@@ -28,4 +28,39 @@ public class AuthController {
 
 class Usuario {
     private String nome;
+    private String email;
+    private String senha;
+
+    public String getEmail() { return email; }
+    public String getSenha() { return senha; }
+}
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+import axios from 'axios';
+
+const LoginScreen = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:8080/auth/login', { email, senha });
+            alert(response.data);
+            if (response.data === "Login realizado com sucesso!") {
+                navigation.navigate('Home');
+            }
+        } catch (error) {
+            alert('Erro ao conectar!');
+        }
+    };
+
+    return (
+        <View>
+            <Text>Login</Text>
+            <TextInput placeholder="Email" onChangeText={setEmail} />
+            <TextInput placeholder="Senha" secureTextEntry={true} onChangeText={setSenha} />
+            <Button title="Entrar" onPress={handleLogin} />
+        </View>
+    );
+};
   
